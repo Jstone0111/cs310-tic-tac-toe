@@ -103,7 +103,7 @@ public class TicTacToeModel {
         
         /* Return TRUE if the specified location is within the bounds of the board */
         
-        if ((row >= width || col >= width)) || (row < 0 || col < 0){
+        if ((row >= width || col >= width) || (row < 0 || col < 0)){
         return false;
         }
         else{
@@ -144,9 +144,22 @@ public class TicTacToeModel {
            TIE, or if the game is not over.  Return the corresponding Result
            value */
         
-        // INSERT YOUR CODE HERE
-
-        return null; // remove this line later!
+           if (isMarkWin(Mark.X) == true){
+            return Result.X;
+            }
+ 
+            else if (isMarkWin(Mark.O) == true){
+            return Result.O;
+            }
+            
+            else if (isTie() == true){
+            return result.TIE;
+            }
+ 
+            else 
+            return result.NONE;
+         
+         // Code Inserted
         
     }
 	
@@ -164,11 +177,22 @@ public class TicTacToeModel {
     private boolean isTie() {
         
         /* Check the squares of the board to see if the game is a tie */
-        
-        // INSERT YOUR CODE HERE
 
-        return false; // remove this line later!
-        
+        boolean boardEmpty = true;
+        for (int i = o; i < width; ++i){
+            for (int j = 0; j < width; ++j){
+                if (board[i][j] != Mark.EMPTY){
+                    boardEmpty = false;
+                }
+            }
+        }
+        if (board.Empty){
+        return true;
+        }
+        else {
+            return false;
+        }
+        // Code Inserted
     }
 
     public boolean isGameover() {
