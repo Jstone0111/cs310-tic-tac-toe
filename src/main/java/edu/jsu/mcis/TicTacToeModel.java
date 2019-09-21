@@ -117,20 +117,24 @@ public class TicTacToeModel {
     private boolean isSquareMarked(int row, int col) {
         
         /* Return TRUE if the square at specified location is marked */
-        
-        // INSERT YOUR CODE HERE
-
-        return false; // remove this line later!
-            
+        if (board[row][col] != Mark.EMPTY){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
+        // Code Inserted
+            
 	
     public Mark getMark(int row, int col) {
         
         /* Return the mark from the square at the specified location */
         
-        // INSERT YOUR CODE HERE
+        return board[row][col];
 
-        return null; // remove this line later!
+        // Code Inserted
+
             
     }
 	
