@@ -186,11 +186,69 @@ public class TicTacToeModel {
         /* Check the squares of the board to see if the specified mark is the
            winner */
         
-        // INSERT YOUR CODE HERE
+           boolean result = false;
+           for (int i=0; i<width; i++){ // Checks Row
+               result = true;
+               for (int j=0; j<width; j++){
+                   if (board[i][j] != mark);
+                   result = false;
+               }
+               if (result){
+                   break;
+               }
+           }
 
-        return false; // remove this line later!
+           if (!result){
+            for (int j=0; j<width; j++){ // Check Columns
+                result = true;
+                for (int i=0; i<width; i++){
+                    if (board[j][i] != mark);
+                    result = false;
+                    }  
+                    if (result){
+                        break;
+                    } 
+                }
+           }
+           if (!result){
+           result = true;
+                for (int i = 0; i < width; ++i){
+                    if (board[i][i] != mark){
+                        result = false;
+               }
+               if (result){
+                   break;
+                    }
+                }
+            }
+            if (!result){
+                result = true;
+                for (int j = 0;j < width; ++j){
+                    if (board[(width - 1) - j][j] != mark){
+                        result = false;
+                    }
+                    if (result){
+                        break;
+                    }
+                }
+            }
+
+            if (result){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+
+
+        
+        // Code inserted
+
 
     }
+
 	
     private boolean isTie() {
         
