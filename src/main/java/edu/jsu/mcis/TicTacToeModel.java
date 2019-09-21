@@ -92,10 +92,28 @@ public class TicTacToeModel {
            specified location is valid, make a mark for the current player, then
            toggle "xTurn" from true to false (or vice-versa) to switch to the
            other player before returning TRUE.  Otherwise, return FALSE. */
+
+           if (isValidSquare(row, col)){
+               if (!isSquareMarked(row, col)){
+                   if (xTurn){
+                        board[row][col] = Mark.X;
+                   }
+                   else {
+                       board[row][col] = Mark.O;
+                   }
+                   xTurn = !xTurn;
+                   return true;
+
+               }
+               else {
+                   return false;
+               }
+           }
+           else{
+               return false;
+           }
         
-        // INSERT YOUR CODE HERE
-        
-        return false; // remove this line later!
+        // Code Inserted
         
     }
 	
@@ -153,11 +171,11 @@ public class TicTacToeModel {
             }
             
             else if (isTie() == true){
-            return result.TIE;
+            return Result.TIE;
             }
  
             else 
-            return result.NONE;
+            return Result.NONE;
          
          // Code Inserted
         
@@ -179,14 +197,14 @@ public class TicTacToeModel {
         /* Check the squares of the board to see if the game is a tie */
 
         boolean boardEmpty = true;
-        for (int i = o; i < width; ++i){
+        for (int i = 0; i < width; ++i){
             for (int j = 0; j < width; ++j){
                 if (board[i][j] != Mark.EMPTY){
                     boardEmpty = false;
                 }
             }
         }
-        if (board.Empty){
+        if (boardEmpty){
         return true;
         }
         else {

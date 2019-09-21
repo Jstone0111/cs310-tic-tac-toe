@@ -29,7 +29,7 @@ public class TicTacToeView {
    
            TicTacToeMove move = new TicTacToeMove(row, col);
    
-           return TicTacToeMove;
+           return move;
         
         // Code Inserted
 
