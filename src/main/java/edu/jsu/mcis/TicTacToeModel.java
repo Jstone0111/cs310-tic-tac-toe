@@ -170,7 +170,7 @@ public class TicTacToeModel {
             return Result.O;
             }
             
-            else if (isTie() == true){
+            else if (isTie()){
             return Result.TIE;
             }
  
@@ -190,7 +190,7 @@ public class TicTacToeModel {
            for (int i=0; i<width; i++){ // Checks Row
                result = true;
                for (int j=0; j<width; j++){
-                   if (board[i][j] != mark);
+                   if (board[i][j] != mark)
                    result = false;
                }
                if (result){
@@ -202,24 +202,23 @@ public class TicTacToeModel {
             for (int j=0; j<width; j++){ // Check Columns
                 result = true;
                 for (int i=0; i<width; i++){
-                    if (board[j][i] != mark);
-                    result = false;
-                    }  
-                    if (result){
-                        break;
-                    } 
+                    if (board[i][j] != mark)
+                        result = false;
+                }                 
+                if (result){
+                    break;
                 }
+            }
            }
+
            if (!result){
-           result = true;
+                result = true;
                 for (int i = 0; i < width; ++i){
                     if (board[i][i] != mark){
                         result = false;
-               }
-               if (result){
-                   break;
                     }
                 }
+ 
             }
             if (!result){
                 result = true;
@@ -227,18 +226,11 @@ public class TicTacToeModel {
                     if (board[(width - 1) - j][j] != mark){
                         result = false;
                     }
-                    if (result){
-                        break;
-                    }
                 }
             }
 
-            if (result){
-                return true;
-            }
-            else{
-                return false;
-            }
+
+            return result;
 
 
 
@@ -254,20 +246,21 @@ public class TicTacToeModel {
         
         /* Check the squares of the board to see if the game is a tie */
 
-        boolean boardEmpty = true;
+        boolean boardEmpty = false;
         for (int i = 0; i < width; ++i){
             for (int j = 0; j < width; ++j){
-                if (board[i][j] != Mark.EMPTY){
-                    boardEmpty = false;
+                if (board[i][j] == Mark.EMPTY){
+                    boardEmpty = true;
                 }
             }
         }
-        if (boardEmpty){
-        return true;
-        }
-        else {
+        if (boardEmpty) {
             return false;
         }
+            else{
+                return true;
+            }
+        
         // Code Inserted
     }
 
