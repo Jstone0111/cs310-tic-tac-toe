@@ -1,6 +1,11 @@
 package edu.jsu.mcis;
 
-public class TicTacToeController {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.*;
+
+public class TicTacToeController implements ActionListener {
 
     private final TicTacToeModel model;
     private final TicTacToeView view;
@@ -12,38 +17,40 @@ public class TicTacToeController {
         /* Initialize model, view, and width */
 
         model = new TicTacToeModel(width);
-        view = new TicTacToeView();
+        view = new TicTacToeView(this, width);
         
     }
 
-    public void start() {
-    
-        /* MAIN LOOP (repeats until game is over) */
+    public String getMarkAsString(int row, int col) {       
+        return (model.getMark(row, col).toString());       
+    }
+   
+    public TicTacToeView getView() {       
+        return view;       
+    }
 
-        /* Display the board using the View's "showBoard()", then use
-           "getNextMove()" to get the next move from the player.  Enter
-           the move (using the Model's "makeMark()", or display an error
-           using the View's "showInputError()" if the move is invalid. */
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        Object source = event.getSource();
 
-           boolean won = false;
+        if(source instanceof JButton){
+            JButton buttons = (JButton)event.getSource();
+            String buttonName = buttons.getName();
+            int row = Integer.valueOf(buttonName.substring(6, 7));
+            int col = Integer.valueOf(buttonName.substring(7, 8));
+            System.out.println("" + row + " " + col);
 
-           while(!won){
-               view.showBoard(model.toString());
-               TicTacToeMove thisMove = view.getNextMove(model.isXTurn());
-               model.makeMark(thisMove.getRow(), thisMove.getCol());
-               if (model.isGameover()){
-                   won = true;
-               }
-           }
+            if(model.makeMark(row, col)){
+                view.updateSquares();
+            }
+            String result = model.getResult().toString();
 
-        // INSERT YOUR CODE HERE
-        
-        /* After the game is over, show the final board and the winner */
-
-        view.showBoard(model.toString());
-
-        view.showResult(model.getResult().toString());
-        
+            if(!result.equals("NONE")){
+                view.disableSquares();
+                view.showResult(result);
+            }
+        }
+        // Code Inserted
     }
 
 }
